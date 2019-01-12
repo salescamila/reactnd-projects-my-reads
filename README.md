@@ -1,3 +1,5 @@
+This project was developed using the [Udacity Frontend Nanodegree Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/index.html) for the developent in html, css, javascript and git commit message style.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
