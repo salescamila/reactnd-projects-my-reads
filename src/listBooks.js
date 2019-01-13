@@ -1,18 +1,23 @@
-import React from 'react';
-import BookShelf from './bookShelf'
-import './App.css'
+import React, { Component } from 'react';
+import BookShelf from './bookShelf';
+import './App.css';
 
-function ListBooks() {
-  return(
-    <div>
-      <BookShelf />
-      <BookShelf />
-      <BookShelf />
-      <div className="open-search">
-        <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+class ListBooks extends Component{
+
+  render() {
+    const { onOpenSearch } = this.props;
+
+    return(
+      <div>
+        <BookShelf />
+        <BookShelf />
+        <BookShelf />
+        <div className="open-search">
+          <button onClick={() => onOpenSearch()}>Add a book</button>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 };
 
 export default ListBooks;
