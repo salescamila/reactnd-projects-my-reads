@@ -16,6 +16,10 @@ class BooksApp extends React.Component {
         this.setState(() => ({
           books
         }))
+        console.log('books', books);
+        /* const shelfReading = this.state.books.filter((book) => {return book.shelf === 'currentlyReadin'})
+        console.log('currentlyReading', shelfReading);
+        console.log('booksState', this.state.books); */
       });
   }
 
@@ -24,6 +28,7 @@ class BooksApp extends React.Component {
       <div className="app">
         <Route exact path='/' render={({ history }) => (
           <ListBooks
+            books={this.state.books}
             onOpenSearch={() => {
               history.push('/search');
             }}

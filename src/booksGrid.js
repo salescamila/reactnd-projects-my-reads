@@ -1,15 +1,14 @@
 import React from 'react';
 import Book from './book';
 
-function BooksGrid() {
+function BooksGrid({books}) {
+  console.log('booksGrid', books);
   return (
-    <div>
-      <ol className="books-grid">
-        <Book />
-        <Book />
-        <Book />
-      </ol>
-    </div>
+    <ol className="books-grid" key={books}>
+      {books.map((b, i) => (
+        <Book item={b}/>
+      ))}
+    </ol>
   )
 }
 
