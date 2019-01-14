@@ -6,7 +6,7 @@ function BooksGrid({books}) {
   return (
     <ol className="books-grid" key={books}>
       {books.map((b, i) => (
-        <Book item={b}/>
+        <Book item={b} key={i}/>
       ))}
     </ol>
   )
