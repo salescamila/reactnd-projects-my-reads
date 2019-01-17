@@ -2,7 +2,7 @@ import React from 'react';
 import BookShelf from './bookShelf';
 import './App.css';
 
-function ListBooks({ books, onOpenSearch }) {
+function ListBooks({ books, onOpenSearch, onChangeShelf }) {
   //const { books, onOpenSearch } = this.props;
 
   const shelfReading = books.filter((book) => {return book.shelf === 'currentlyReading'})
@@ -13,13 +13,25 @@ function ListBooks({ books, onOpenSearch }) {
     <div className="list-books-content">
       <BookShelf
         shelfTitle={'Currently Reading'}
-        books={shelfReading}/>
+        books={shelfReading}
+        onChangeShelf={(book, shelf) => (
+          onChangeShelf(book, shelf)
+        )}
+        />
       <BookShelf
         shelfTitle={'To Read'}
-        books={shelfToRead}/>
+        books={shelfToRead}
+        onChangeShelf={(book, shelf) => (
+          onChangeShelf(book, shelf)
+        )}
+        />
       <BookShelf
         shelfTitle={'Read'}
-        books={shelfRead}/>
+        books={shelfRead}
+        onChangeShelf={(book, shelf) => (
+          onChangeShelf(book, shelf)
+        )}
+        />
       <div className="open-search">
         <button onClick={() => onOpenSearch()}>Add a book</button>
       </div>

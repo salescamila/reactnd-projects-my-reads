@@ -9,23 +9,38 @@ class SearchBook extends Component {
 
   UpdateQuery = (text) => {
     this.setState(() => ({
-      query: text.trim()
-    }))
+      query: text
+    }));
+    this.props.onSearch(text);
   }
 
   clearQuery = () => {
     this.UpdateQuery('');
   }
 
+  changeShelf(book, shelf) {
+    if (typeof book !== 'undefined') {
+      this.props.onChangeShelf(book, shelf);
+    }
+  }
+
   render() {
     const { query } = this.state;
     const { books, onCloseSearch } = this.props;
 
-    const showingBooks = query === ''
-      ? []
-      : books.filter((b) => (
+    let showingBooks = [];
+
+    if (query !== '' && typeof books !== 'undefined' && books.length > 0) {
+      //Search by Title
+      /*showingBooks = books.filter((b) => (
         b.title.toLowerCase().includes(query.toLowerCase())
-      ));
+      )); */
+      showingBooks = [...books];
+      //Search by Author
+      if (typeof showingBooks !== 'undefined' && showingBooks.length > 0) {
+        console.log('booksFiltered',showingBooks);
+      }
+    }
 
     return(
       <div className="search-books">
@@ -42,17 +57,29 @@ class SearchBook extends Component {
             */}
             <input
               type='text'
-              placeholder="Search by title or author"
+              placeholder='Search by title or author'
               value={query}
               onChange={(event) => (this.UpdateQuery(event.target.value))}
             />
           </div>
         </div>
-        <div className="search-books-results">
-          <ol className="books-grid">
-            {showingBooks.map((b, i) => (
-              <Book item={b} key={i}/>
-            ))}
+        <div className='search-books-results'>
+          <ol className='books-grid'>
+            {
+              typeof books !== 'undefined'
+              ? showingBooks.map((b, i) => (
+                <Book
+                  item={b}
+                  key={i}
+                  onChangeShelf={(book, shelf) => (
+                    this.changeShelf(book, shelf))
+                  }
+                 /* onChangeShelf={(book, shelf) => (
+                    onChangeShelf(book, shelf)
+                  )}*/
+                /> ))
+              : 'No books found'
+            }
           </ol>
         </div>
       </div>

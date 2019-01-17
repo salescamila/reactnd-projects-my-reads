@@ -11,16 +11,37 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
+    this.getBooks();
+  }
+
+  getBooks() {
     BooksAPI.getAll()
       .then((books) => {
         this.setState(() => ({
           books
         }))
         console.log('books', books);
-        /* const shelfReading = this.state.books.filter((book) => {return book.shelf === 'currentlyReadin'})
-        console.log('currentlyReading', shelfReading);
-        console.log('booksState', this.state.books); */
       });
+  }
+
+  search(query) {
+    if (query !== '') {
+      BooksAPI.search(query)
+        .then((books) => {
+          this.setState(() => ({
+            books
+          }))
+          console.log('books', books);
+        });
+    }
+  }
+
+  updateBook(book, shelf) {
+    console.log('Book', book.title);
+    console.log('Shelf', book.shelf);
+    console.log('Updated to', shelf);
+    BooksAPI.update(book, shelf)
+      .then(this.getBooks());
   }
 
   render() {
@@ -31,15 +52,25 @@ class BooksApp extends React.Component {
             books={this.state.books}
             onOpenSearch={() => {
               history.push('/search');
+              this.getBooks();
             }}
+            onChangeShelf={(book, shelf) => (
+              this.updateBook(book, shelf)
+            )}
           />
         )}/>
         <Route path='/search' render={({ history }) => (
           <SearchBook
             books={this.state.books}
+            onSearch={(query) => {
+              this.search(query);
+            }}
             onCloseSearch={() => {
               history.push('/');
             }}
+            onChangeShelf={(book, shelf) => (
+              this.updateBook(book, shelf)
+            )}
           />
         )}/>
       </div>

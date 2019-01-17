@@ -1,28 +1,44 @@
 import React from 'react'
 
-function Book({item}) {
-  return (
-    <li key={item.id}>
-      <div className="book">
-        <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+item.imageLinks.thumbnail+'")' }}></div>
-          <div className="book-shelf-changer">
-            <select id='select-status' defaultValue={item.shelf}>
-              <option value="move" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
+function Book({item, onChangeShelf}) {
+  if (typeof item !== 'undefined') {
+    return (
+      <li key={item.id}>
+        <div className="book">
+          <div className="book-top">
+            {
+              typeof item.imageLinks !== 'undefined'
+              ?<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+item.imageLinks.thumbnail+'")' }}></div>
+              :<div className="book-cover"></div>
+            }
+
+            <div className="book-shelf-changer">
+              <select
+                  id='select-status'
+                  defaultValue={item.shelf}
+                  onChange={(event) => (onChangeShelf(item, event.target.value))}>
+                <option value="move" disabled>Move to...</option>
+                <option value="currentlyReading">Currently Reading</option>
+                <option value="wantToRead">Want to Read</option>
+                <option value="read">Read</option>
+                <option value="none">None</option>
+              </select>
+            </div>
           </div>
+          <div className="book-title">{item.title}</div>
+          {
+            typeof item.authors !== 'undefined'
+            ? item.authors.map((author, i) => {
+                return (<div className="book-authors" key={i}>{author}</div>)
+              })
+            : <div className="book-authors"></div>
+          }
         </div>
-        <div className="book-title">{item.title}</div>
-        {item.authors.map((author, i) => {
-          return (<div className="book-authors" key={i}>{author}</div>)
-        })}
-      </div>
-    </li>
-  );
+      </li>
+    );
+  } else {
+    return('');
+  }
 };
 
 export default Book;
