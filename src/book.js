@@ -11,7 +11,6 @@ function Book({item, onChangeShelf}) {
               ?<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+item.imageLinks.thumbnail+'")' }}></div>
               :<div className="book-cover"></div>
             }
-
             <div className="book-shelf-changer">
               <select
                   id='select-status'

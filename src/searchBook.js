@@ -24,22 +24,33 @@ class SearchBook extends Component {
     }
   }
 
+  getBookShelf(books, bookId){
+    const bookTemp = books.filter((b) => (b.id === bookId))
+
+    if (bookTemp.length === 0){
+      return 'none';
+    } else {
+      return bookTemp[0].shelf;
+    }
+  }
+
   render() {
     const { query } = this.state;
-    const { books, onCloseSearch } = this.props;
+    const { books, booksFound, onCloseSearch } = this.props;
 
     let showingBooks = [];
 
     if (query !== '' && typeof books !== 'undefined' && books.length > 0) {
-      //Search by Title
+      //Search by Title on the currents shelvies
       /*showingBooks = books.filter((b) => (
         b.title.toLowerCase().includes(query.toLowerCase())
       )); */
-      showingBooks = [...books];
-      //Search by Author
-      if (typeof showingBooks !== 'undefined' && showingBooks.length > 0) {
-        console.log('booksFiltered',showingBooks);
-      }
+
+      //showingBooks = [...booksFound];
+      showingBooks = booksFound.map((b) => {
+        b.shelf = this.getBookShelf(books, b.id);
+        return b;
+      })
     }
 
     return(

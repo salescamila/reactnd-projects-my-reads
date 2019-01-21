@@ -7,7 +7,8 @@ import ListBooks from './listBooks';
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    booksFound: []
   }
 
   componentDidMount() {
@@ -18,28 +19,29 @@ class BooksApp extends React.Component {
     BooksAPI.getAll()
       .then((books) => {
         this.setState(() => ({
-          books
+          books: books,
+          booksFound: this.state.booksFound
         }))
         console.log('books', books);
+        console.log('booksFound', this.state.booksFound);
       });
   }
 
   search(query) {
     if (query !== '') {
       BooksAPI.search(query)
-        .then((books) => {
+        .then((booksFound) => {
           this.setState(() => ({
-            books
+            books: this.state.books,
+            booksFound: booksFound
           }))
-          console.log('books', books);
+          console.log('books', this.state.books);
+          console.log('booksFound', booksFound);
         });
     }
   }
 
   updateBook(book, shelf) {
-    console.log('Book', book.title);
-    console.log('Shelf', book.shelf);
-    console.log('Updated to', shelf);
     BooksAPI.update(book, shelf)
       .then(this.getBooks());
   }
@@ -62,6 +64,7 @@ class BooksApp extends React.Component {
         <Route path='/search' render={({ history }) => (
           <SearchBook
             books={this.state.books}
+            booksFound={this.state.booksFound}
             onSearch={(query) => {
               this.search(query);
             }}
