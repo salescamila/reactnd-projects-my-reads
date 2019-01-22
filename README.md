@@ -1,4 +1,11 @@
-This project was developed using the [Udacity Frontend Nanodegree Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/index.html) for the developent in html, css, javascript and git commit message style.
+# Project Description
+
+My Reads is an on-line bookshelf where you can search for books and organize them by the following status: 
+- Currently reading
+- Want to Read
+- Read
+
+This project is part of [Udacity's React Nanodegree program](https://www.udacity.com/course/react-nanodegree--nd019) and was developed using the [Udacity Frontend Nanodegree Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/index.html) for the development in html, css, javascript and git commit message style.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
