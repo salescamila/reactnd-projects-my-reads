@@ -5,6 +5,10 @@ import { Route } from 'react-router-dom';
 import SearchBook from './searchBook';
 import ListBooks from './listBooks';
 
+/**
+ * @description Application My Reads
+ * @constructor
+ */
 class BooksApp extends React.Component {
   state = {
     books: [],
@@ -27,7 +31,7 @@ class BooksApp extends React.Component {
         this.setState(() => ({
           books: books,
           booksFound: this.state.booksFound
-        }))
+        }));
       });
   }
 
@@ -43,13 +47,13 @@ class BooksApp extends React.Component {
           this.setState(() => ({
             books: this.state.books,
             booksFound: booksFound
-          }))
+          }));
         });
     } else {
       this.setState(() => ({
         books: this.state.books,
         booksFound: []
-      }))
+      }));
     }
   }
 

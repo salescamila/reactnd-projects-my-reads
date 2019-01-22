@@ -1,6 +1,13 @@
 import React from 'react';
 import BooksGrid from './booksGrid';
 
+/**
+ * @description Represents a book shelf
+ * @constructor
+ * @param {string} shelfTitle
+ * @param {object} books
+ * @param {function} onChangeShelf
+ */
 function BookShelf({shelfTitle, books, onChangeShelf}) {
   return(
     <div className="bookshelf">
@@ -8,9 +15,7 @@ function BookShelf({shelfTitle, books, onChangeShelf}) {
       <div className="bookshelf-books">
         <BooksGrid
           books={books}
-          onChangeShelf={(book, shelf) => (
-            onChangeShelf(book, shelf)
-          )}
+          onChangeShelf={(book, shelf) => (onChangeShelf(book, shelf))}
         />
       </div>
     </div>

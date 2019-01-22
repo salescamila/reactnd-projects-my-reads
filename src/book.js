@@ -1,5 +1,11 @@
 import React from 'react'
 
+/**
+ * @description Represents a books
+ * @constructor
+ * @param {object} item
+ * @param {function} onChangeShelf
+ */
 function Book({item, onChangeShelf}) {
   if (typeof item !== 'undefined') {
     return (
@@ -7,8 +13,8 @@ function Book({item, onChangeShelf}) {
         <div className="book">
           <div className="book-top">
             {
-              typeof item.imageLinks !== 'undefined'
-              ?<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+item.imageLinks.thumbnail+'")' }}></div>
+              (typeof item.imageLinks !== 'undefined')
+              ?<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+item.imageLinks.thumbnail+'")', alt: "Book image" }}></div>
               :<div className="book-cover"></div>
             }
             <div className="book-shelf-changer">
@@ -26,9 +32,9 @@ function Book({item, onChangeShelf}) {
           </div>
           <div className="book-title">{item.title}</div>
           {
-            typeof item.authors !== 'undefined'
+            (typeof item.authors !== 'undefined')
             ? item.authors.map((author, i) => {
-                return (<div className="book-authors" key={i}>{author}</div>)
+                return (<div className="book-authors" key={i}>{author}</div>);
               })
             : <div className="book-authors"></div>
           }

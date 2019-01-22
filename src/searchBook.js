@@ -8,7 +8,8 @@ class SearchBook extends Component {
   }
 
   /**
-   * @description Updates query's text and calls function to search whit the text
+   * @description Updates query's text and calls
+   *              function to search whit the text
    * @param {string} text
    */
   UpdateQuery = (text) => {
@@ -45,7 +46,7 @@ class SearchBook extends Component {
     let bookTemp = [];
 
     if (typeof books !== 'undefined' && books.length > 0) {
-      bookTemp = books.filter((b) => (b.id === bookId))
+      bookTemp = books.filter((b) => (b.id === bookId));
     }
 
     if (bookTemp.length === 0){
@@ -71,7 +72,7 @@ class SearchBook extends Component {
         showingBooks = booksFound.map((b) => {
           b.shelf = this.getBookShelf(books, b.id);
           return b;
-        })
+        });
       }
     }
 
@@ -91,15 +92,14 @@ class SearchBook extends Component {
         <div className='search-books-results'>
           <ol className='books-grid'>
             {
-              typeof books !== 'undefined'
+              (typeof books !== 'undefined')
               ? showingBooks.map((b, i) => (
-                <Book
-                  item={b}
-                  key={i}
-                  onChangeShelf={(book, shelf) => (
-                    this.changeShelf(book, shelf))
-                  }
-                /> ))
+                  <Book
+                    item={b}
+                    key={i}
+                    onChangeShelf={(book, shelf) => (this.changeShelf(book, shelf))}
+                  />
+                ))
               : 'No books found'
             }
           </ol>
