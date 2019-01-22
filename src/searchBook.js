@@ -7,6 +7,10 @@ class SearchBook extends Component {
     query: ''
   }
 
+  /**
+   * @description Updates query's text and calls function to search whit the text
+   * @param {string} text
+   */
   UpdateQuery = (text) => {
     this.setState(() => ({
       query: text
@@ -14,16 +18,29 @@ class SearchBook extends Component {
     this.props.onSearch(text);
   }
 
+  /**
+   * @description Clear the query's text
+   */
   clearQuery = () => {
     this.UpdateQuery('');
   }
 
+  /**
+   * @description Calls functions to change book's shelf
+   * @param {object} book
+   * @param {string} shelf
+   */
   changeShelf(book, shelf) {
     if (typeof book !== 'undefined') {
       this.props.onChangeShelf(book, shelf);
     }
   }
 
+  /**
+   * @description Get current book's shelf
+   * @param {object} books
+   * @param {string} bookId
+   */
   getBookShelf(books, bookId){
     let bookTemp = [];
 
@@ -50,8 +67,6 @@ class SearchBook extends Component {
         b.title.toLowerCase().includes(query.toLowerCase())
       )); */
 
-      //showingBooks = [...booksFound];
-
       if (typeof books !== 'undefined' && books.length > 0) {
         showingBooks = booksFound.map((b) => {
           b.shelf = this.getBookShelf(books, b.id);
@@ -65,14 +80,6 @@ class SearchBook extends Component {
         <div className="search-books-bar">
           <button className="close-search" onClick={() => onCloseSearch()}>Close</button>
           <div className="search-books-input-wrapper">
-            {/*
-              NOTES: The search from BooksAPI is limited to a particular set of search terms.
-              You can find these search terms here:
-              https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-              However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-              you don't find a specific author or title. Every search is limited by search terms.
-            */}
             <input
               type='text'
               placeholder='Search by title or author'
@@ -92,9 +99,6 @@ class SearchBook extends Component {
                   onChangeShelf={(book, shelf) => (
                     this.changeShelf(book, shelf))
                   }
-                 /* onChangeShelf={(book, shelf) => (
-                    onChangeShelf(book, shelf)
-                  )}*/
                 /> ))
               : 'No books found'
             }

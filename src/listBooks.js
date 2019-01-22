@@ -3,8 +3,6 @@ import BookShelf from './bookShelf';
 import './App.css';
 
 function ListBooks({ books, onOpenSearch, onChangeShelf }) {
-  //const { books, onOpenSearch } = this.props;
-
   const shelfReading = books.filter((book) => {return book.shelf === 'currentlyReading'})
   const shelfToRead = books.filter((book) => {return book.shelf === 'wantToRead'})
   const shelfRead = books.filter((book) => {return book.shelf === 'read'})

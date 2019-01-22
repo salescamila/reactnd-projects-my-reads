@@ -11,10 +11,16 @@ class BooksApp extends React.Component {
     booksFound: []
   }
 
+  /**
+   * @description Get books after component mount
+   */
   componentDidMount() {
     this.getBooks();
   }
 
+  /**
+   * @description Get books saved on shelvies and set to state
+   */
   getBooks() {
     BooksAPI.getAll()
       .then((books) => {
@@ -22,11 +28,13 @@ class BooksApp extends React.Component {
           books: books,
           booksFound: this.state.booksFound
         }))
-        console.log('books', books);
-        console.log('booksFound', this.state.booksFound);
       });
   }
 
+  /**
+   * @description Search for text inputted and update the books with setState
+   * @param {string} query
+   */
   search(query) {
     query = query.trim();
     if (query !== '') {
@@ -36,8 +44,6 @@ class BooksApp extends React.Component {
             books: this.state.books,
             booksFound: booksFound
           }))
-          console.log('books', this.state.books);
-          console.log('booksFound', booksFound);
         });
     } else {
       this.setState(() => ({
@@ -47,6 +53,11 @@ class BooksApp extends React.Component {
     }
   }
 
+  /**
+   * @description Updates book's shelf
+   * @param {object} book
+   * @param {string} shelf
+   */
   updateBook(book, shelf) {
     BooksAPI.update(book, shelf)
       .then(this.getBooks());
