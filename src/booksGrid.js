@@ -1,5 +1,5 @@
 import React from 'react';
-import Book from './book';
+import Book from './Book';
 
 /**
  * @description List all the books of a shelf on a grid

@@ -1,5 +1,5 @@
 import React from 'react';
-import BookShelf from './bookShelf';
+import BookShelf from './BookShelf';
 import './App.css';
 
 /**

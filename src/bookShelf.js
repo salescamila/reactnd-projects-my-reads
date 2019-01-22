@@ -1,5 +1,5 @@
 import React from 'react';
-import BooksGrid from './booksGrid';
+import BooksGrid from './BooksGrid';
 
 /**
  * @description Represents a book shelf
