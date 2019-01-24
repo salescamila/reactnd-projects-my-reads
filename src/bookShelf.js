@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BooksGrid from './BooksGrid';
 
 /**
@@ -21,5 +22,11 @@ function BookShelf({shelfTitle, books, onChangeShelf}) {
     </div>
   )
 }
+
+BookShelf.propTypes = {
+  shelfTitle: PropTypes.string.isRequired,
+  books: PropTypes.array.isRequired,
+  onChangeShelf: PropTypes.func.isRequired,
+};
 
 export default BookShelf;

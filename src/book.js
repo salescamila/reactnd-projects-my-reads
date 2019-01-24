@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * @description Represents a books
@@ -14,7 +15,7 @@ function Book({item, onChangeShelf}) {
           <div className="book-top">
             {
               (typeof item.imageLinks !== 'undefined')
-              ?<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+item.imageLinks.thumbnail+'")', alt: "Book image" }}></div>
+              ?<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+item.imageLinks.thumbnail+'")'}}></div>
               :<div className="book-cover"></div>
             }
             <div className="book-shelf-changer">
@@ -45,5 +46,10 @@ function Book({item, onChangeShelf}) {
     return('');
   }
 };
+
+Book.PropTypes = {
+  item: PropTypes.object.isRequired,
+  onChangeShelf: PropTypes.func.isRequired,
+}
 
 export default Book;

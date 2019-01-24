@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Book from './Book';
 
 class SearchBook extends Component {
+
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    booksFound: PropTypes.array.isRequired,
+    onSearch: PropTypes.func.isRequired,
+    onCloseSearch: PropTypes.func.isRequired,
+    onChangeShelf: PropTypes.func.isRequired,
+  }
 
   state = {
     query: ''
@@ -62,18 +71,12 @@ class SearchBook extends Component {
 
     let showingBooks = [];
 
-    if (query !== '' && typeof booksFound !== 'undefined' && booksFound.length > 0) {
-      //Search by Title on the currents shelvies
-      /*showingBooks = books.filter((b) => (
-        b.title.toLowerCase().includes(query.toLowerCase())
-      )); */
-
-      if (typeof books !== 'undefined' && books.length > 0) {
-        showingBooks = booksFound.map((b) => {
-          b.shelf = this.getBookShelf(books, b.id);
-          return b;
-        });
-      }
+    if (query !== '' && typeof booksFound !== 'undefined' && booksFound.length > 0
+        && typeof books !== 'undefined' && books.length > 0) {
+      showingBooks = booksFound.map((b) => {
+        b.shelf = this.getBookShelf(books, b.id);
+        return b;
+      });
     }
 
     return(

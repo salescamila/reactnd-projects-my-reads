@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BookShelf from './BookShelf';
 import './App.css';
 
@@ -42,6 +43,12 @@ function ListBooks({ books, onOpenSearch, onChangeShelf }) {
       </div>
     </div>
   )
+}
+
+ListBooks.propTypes = {
+  books: PropTypes.array.isRequired,
+  onOpenSearch: PropTypes.func.isRequired,
+  onChangeShelf: PropTypes.func.isRequired,
 }
 
 export default ListBooks;
