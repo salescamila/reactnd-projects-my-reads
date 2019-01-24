@@ -19,7 +19,7 @@ function ListBooks({ books, onOpenSearch, onChangeShelf }) {
   return(
     <div className="list-books">
       <div className="list-books-title">
-        <h1>MyReads</h1>
+        <h1>MyReads: A Book Lending App</h1>
       </div>
       <div className="list-books-content">
         <BookShelf
